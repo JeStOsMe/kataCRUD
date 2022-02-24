@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useEffect, useReducer, useRef, useState} from 'react';
 
-const HOST_API = 'http://localhost:8080/api';
+const HOST_API = 'http://localhost:3000/api';
 
 const initialState = {
   list: []
@@ -20,7 +20,7 @@ const Form = () => {
 
     const request = {
       name: state.name,
-      id: null,
+      //id: null,
       isCompleted: false
     }
 

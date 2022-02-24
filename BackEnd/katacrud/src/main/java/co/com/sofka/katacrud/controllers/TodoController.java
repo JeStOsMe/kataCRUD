@@ -1,6 +1,7 @@
 package co.com.sofka.katacrud.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import co.com.sofka.katacrud.models.Todo;
 import co.com.sofka.katacrud.services.TodoService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000/")
 public class TodoController {
 
     @Autowired
