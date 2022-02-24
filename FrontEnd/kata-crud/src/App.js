@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useEffect, useReducer, useRef, useState} from 'react';
 
-const HOST_API = 'http://localhost:3000/api';
+const HOST_API = "http://localhost:8080/api";
 
 const initialState = {
   list: []
@@ -20,11 +20,11 @@ const Form = () => {
 
     const request = {
       name: state.name,
-      //id: null,
+      id: null,
       isCompleted: false
     }
 
-    fetch(HOST_API+'/todo/save', {
+    fetch(HOST_API+"/todo/save", {
       method: "POST",
       body: JSON.stringify(request),
       headers: {
@@ -35,7 +35,7 @@ const Form = () => {
     .then((todo) => {
       dispatch({type: "add-item", item: todo});
       setState({name: ""});
-      formRef.current.reset()
+      formRef.current.reset();
     });
   }
 
@@ -85,22 +85,23 @@ const List = () => {
 }
 
 /* -------------------------------------------------------- */
+function reducer(state, action) {
+  switch (action.type) {
+    case "update-list":
+      return {...state, list: action.list}
+    case "add-item":
+      const newList = state.list;
+      newList.push(action.item);
+      return {...state, list: newList}
+    default:
+      return state;
+  }
+}
+
+/* -------------------------------------------------------- */
 const StoreProvider = ( {children}) => {
   
   const [state, dispatch] = useReducer(reducer, initialState);
-  
-  function reducer(state, action) {
-    switch (action.type) {
-      case 'update-list':
-        return {...state, list: action.list}
-      case 'add-item':
-        const newList = state.list;
-        newList.push(action.item);
-        return {...state, list: newList}
-      default:
-        return state;
-    }
-  }
 
   return <Store.Provider value={{state, dispatch}}>
     {children}
