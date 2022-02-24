@@ -12,11 +12,11 @@ public class TodoService {
     @Autowired
     private TodoRepository todoRepo;
 
-    private Iterable<Todo> list(){
+    public Iterable<Todo> list(){
         return todoRepo.findAll();
     }
 
-    private Todo save(Todo newTodo){
+    public Todo save(Todo newTodo){
         return todoRepo.save(newTodo);
     }
 
