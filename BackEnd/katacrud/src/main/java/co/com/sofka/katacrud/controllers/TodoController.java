@@ -27,7 +27,11 @@ public class TodoController {
     public Todo save(@RequestBody Todo newTodo){
         return todoServ.save(newTodo);
     }
-
+    /*
+    Este Request actualiza siempre y cuando en el JSON, envés de escribir "isCompleted": valor_boolean,
+    así como se llama el atributo en su entidad, hay que usar "completed": valor_boolean.
+    Tanto para la petición Post, como para la petición Put, se puede usar "completed": valor_boolean.
+    */
     @PutMapping("api/todo/update")
     public Todo update(@RequestBody Todo newTodo){
         if(newTodo.getId() != null){
